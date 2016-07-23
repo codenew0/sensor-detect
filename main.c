@@ -56,13 +56,13 @@ static gboolean temper_show (gpointer data)
 
 	gtk_status_icon_set_tooltip_text (GTK_STATUS_ICON (tray_icon), temper_str); 
 
-	if (temper > 50 && flag == 0)
+	if (temper > WARNING_TEMPERATURE && flag == 0)
 	{
 		flag = 1;
 		pthread_t tid;
 		pthread_create (&tid, NULL, play_sound, (void*)"bell.wav");
 	}
-	else if (temper <= 50)
+	else if (temper <= WARNING_TEMPERATURE)
 	{
 		flag = 0;
 	}
